@@ -1,0 +1,57 @@
+<?php
+
+define('SensorKesselSollTemp', 1);
+define('SensorKesselIstTemp', 2);
+define('SensorWarmwasserSollTemp', 3);
+define('SensorWarmwasserIstTemp', 4);
+define('SensorVorlaufHK1SollTemp', 5);
+define('SensorVorlaufHK1IstTemp', 6);
+define('SensorVorlaufHK2SollTemp', 7);
+define('SensorVorlaufHK2IstTemp', 8);
+define('SensorMischersteuerung', 9);
+define('SensorRuecklaufTemp', 10);
+define('SensorAussenTemp', 11);
+define('SensorGedaempfteAussenTemp', 12);
+define('SensorRaumSollTemp', 13);
+define('SensorRaumIstTemp', 14);
+define('SensorMomLeistung', 15);
+define('SensorMaxLeistung', 16);
+define('SensorFlammenstrom', 17);
+define('SensorSystemdruck', 18);
+define('SensorBetriebszeit', 19);
+define('SensorBrennerstarts', 20);
+define('SensorWarmwasserbereitungsZeit', 21);
+define('SensorWarmwasserBereitungen', 22);
+define('SensorHeizZeit', 23);
+define('SensorFlamme', 100);
+define('SensorBrenner', 101);
+define('SensorZuendung', 102);
+define('SensorKesselPumpe', 103);
+define('SensorHK1Tagbetrieb', 104);
+define('SensorHK2Tagbetrieb', 105);
+define('Sensor3WegeVentil', 106);
+define('SensorZirkulation', 107);
+define('SensorWarmwasserBereitung', 110);
+define('SensorWWTagbetrieb', 112);
+define('SensorSommerbetrieb', 113);
+define('SensorWarmwasserTempOK', 114);
+define('SensorWWVorrang', 115);
+define('SensorHK1Pumpe', 116);
+define('SensorHK2Pumpe', 117);
+define('SensorHK1Ferien', 118);
+define('SensorHK1Party', 119);
+define('SensorHK2Ferien', 120);
+define('SensorHK2Party', 121);
+define('SensorHK1Automatik', 122);
+define('SensorHK2Automatik', 123);
+define('SensorServiceCode', 200);
+define('SensorFehlerCode', 201);
+
+define('ReadingTypeNone', 0);
+define('ReadingTypeTemperature', 1);
+define('ReadingTypePercent', 2);
+define('ReadingTypeCurrent', 3);
+define('ReadingTypePressure', 4);
+define('ReadingTypeTime', 5);
+define('ReadingTypeCount', 6);
+?>
