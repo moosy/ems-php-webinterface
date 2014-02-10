@@ -1,0 +1,19 @@
+Buderus EMS Webinterface
+(c) 2014 by Michael Moosbauer
+
+This is the PHP Web Frontend that makes the features of the
+ems-collector daemon accessible through HTTP.
+
+For installation, see INSTALL.
+For screenshots, look into the screenshots directory.
+
+This work relies heavily of the ems-collector written by
+Danny Baumann. Thanks to him for his excellent work.
+
+NOTE: This version is NOT designed to be made available in the
+      public internet! PLEASE MAKE SURE THAT ALL FILES ARE
+      ONLY ACCESSIBLE IN YOUR LOCAL NETWORK OR IN A PASSWORD-
+      PROTECTED ENVIRONMENT!
+      Otherwise any bad guy will be able to reconfigure your
+      heating system!!
+
