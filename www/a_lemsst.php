@@ -20,9 +20,10 @@ flush();
 </tr>
 <tr><td bgcolor=#bbbbbb colspan=2><h3>Heizkreis</h3></td></tr>
 <tr>
-<td colspan=2 bgcolor=#cccccc align=center>
 
 <?php
+if (cond("heizactive")){
+print("<td colspan=2 bgcolor=#cccccc align=center>");
 
 $temptemp = getHKInfo("temptemp");
 $ttcol="#ffff90";
@@ -75,6 +76,12 @@ print("<input type=hidden name=temptemp value=$temptemp>");
 </tr>
 </table>
 
+<?php
+
+} else print("<td colspan=2 align=center bgcolor=#ff7777>Heizfunktion am Kessel deaktiviert!");
+
+?>
+
 </td>
 
 </tr>
@@ -119,11 +126,17 @@ Pausemodus<br><center>
 
 <tr><td  bgcolor=#bbbbbb colspan=2><h3>Warmwasser</h3></td></tr>
 <tr>
+<?php if (cond("wwactive")){ ?>
 <td align=left bgcolor=#cccccc>
 Temperatur<br><center>
 <?php tempchooser("ww",30,80,1,"°C","wählen",getWWinfo("wwtag","2"));?>
 <br>
 <input type=submit name=setww value=Setzen>
+<?php 
+} else print("<td align=center bgcolor=#ff7777>WW am<br>Kessel<br>deaktiviert");
+
+?>
+
 </td>   
 <td align=left bgcolor=#cccccc>
 Einmalladung<br><center>

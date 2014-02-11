@@ -21,6 +21,12 @@ function cond($type){
   case("desinfect"):
     return (getWWInfo("tdstat")=="on");
     break;
+  case("wwactive"):
+    return (getWWInfo("wwactive")=="on");
+    break;
+  case("heizactive"):
+    return (getUBAInfo("heizactive")=="on");
+    break;
   case("daempfung"):
     return (getHKInfo("daempfung")=="on");
     break;
@@ -37,6 +43,7 @@ function getWWInfo($src){
                 "zir" => "1DATA: Betriebsart Zirkulationspumpe =",
                 "spzir" => "3DATA: Anzahl Schaltpunkte Zirkulation =",
                 "wwtag" => "3DATA: Warmwassertemperatur Tag =",
+                "wwactive" => "3DATA: Warmwasser am Kessel aktiviert =",
                 "limittemp" => "1DATA: max. Warmwassertemperatur =",
                 "loadled"   => "1DATA: Einmalladungstaste =",
                 "tdstat" => "1DATA: Thermische Desinfektion =",
@@ -82,6 +89,7 @@ function getWWInfo($src){
         if ($r2=="staendig aus") $r2="off";
         break;
       case "loadled":
+      case "wwactive":
         if ($r2 == "AN") $r2="on";
         if ($r2 == "AUS") $r2="off";
         break;
@@ -202,6 +210,7 @@ function getHKInfo($src){
 function getUBAInfo($src){
   global $ubacache;
   $srch = array("antipen" => "DATA: Antipendelzeit =",
+                "heizactive" => "DATA: Heizfunktion am Kessel aktiviert =",
                 "kpmin" => "DATA: min. Kesselpumpenleistung =",
                 "kpmax"  => "DATA: max. Kesselpumpenleistung =",
                 "kpnachl"  => "DATA: Kesselpumpennachlauf =",
@@ -218,12 +227,22 @@ function getUBAInfo($src){
       $ubacache = $res;
   }
                       
+
+
   foreach($res as $r){
     $r2 = str_replace($srch[$src],"",$r);
     if ($r2 != $r) {
       $r2 = trim($r2);
-      $r2=trim(substr($r2,0,3));
-      if (substr($r2,1,1)==" ")  $r2=trim(substr($r2,0,2));
+      switch ($src){
+      case "heizactive":
+        if ($r2 == "AN") $r2="on";
+        if ($r2 == "AUS") $r2="off";
+        break;
+
+      default:
+        $r2=trim(substr($r2,0,3));
+        if (substr($r2,1,1)==" ")  $r2=trim(substr($r2,0,2));
+      }
       return $r2;
     }
   }
