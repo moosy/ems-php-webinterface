@@ -1,0 +1,6 @@
+<?php
+require("/emsincludes/emssetvalue.inc");
+sleep(1);
+doEmsDataCommand(substr($emscommand,0,3)." requestdata",true);
+close_ems();
+?>

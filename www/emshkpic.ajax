@@ -1,0 +1,5 @@
+<?php
+require("/emsincludes/config.php");
+exec('sudo '.$emsscriptpath.'/calcheizkurve.sh');
+print('<img src="graphs/hk.png?t='.time().'" alt="Bild" width=90% />');
+?>

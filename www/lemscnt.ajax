@@ -1,0 +1,112 @@
+<div style="display: none;">
+Preload Pics:
+<img src="img/pp_on.png">
+<img src="img/pp_off.png">
+<img src="img/ww_on.png">
+<img src="img/ww_off.png">
+<img src="img/sun_on.png">
+<img src="img/sun_off.png">
+<img src="img/zirk_on.png">
+<img src="img/zirk_off.png">
+<img src="img/maint_error.png">
+<img src="img/maint_cal.png">
+<img src="img/maint_hour.png">
+<img src="img/maint_off.png">
+<img src="img/flame.jpg">
+<img src="img/off.jpg">
+<img src="img/valve.jpg">
+<img src="img/heater.jpg">
+
+</div>
+<?php
+$dg = " &deg;C";
+$pc = " %";
+$ua = " &micro;A";
+flush();
+require("/emsincludes/emsqry.inc");
+require("/emsincludes/emsscdesc.inc");
+$data = getEmsLiveData();
+$d = array();
+foreach ($data as $k => $v){
+  $d[$k]=htmlentities($v);
+}
+$desc = $scdesc[$data["servicecode"].$data["errorcode"]];
+$stoer = (strpos(" ".$desc,"Störungscode"));
+
+$col1="#dddddd";
+$col2="#ffdddd";
+$col3="#ddddff";
+
+if ($_GET["id"]==1){
+?>
+<h3>Status</h3>
+</td></tr>
+<tr><td colspan=2 bgcolor=#cccccc>
+<table bgcolor=#FFFFFF cellspacing=5 cellpadding=5 width=100%>
+<?php
+print("<tr><td colspan=3>");
+  print("<table><tr><td>");
+  print("<img src=img/".($d["flameactive"]=="on"?"flame.jpg":"off.jpg")." alt=Flamme>");
+  print("<img src=img/".($d["3wayonww"]=="on"?"valve.jpg":"heater.jpg")." alt='Heiz- oder Warmwasserbetrieb'>");
+  print("</td><td valign=top>");
+  print("<img src=img/".($d["ww daymode"]=="on"?"ww_on.png":"ww_off.png")." alt=Warmwasserbereitung>&nbsp;");
+  print("<img src=img/".($d["zirkpump daymode"]=="on"?"zirk_on.png":"zirk_off.png")." alt=Zirkulation>&nbsp;");
+  print("<img src=img/".($d["hk1 partymode"]=="on"?"pp_on.png":"pp_off.png")." alt='Pause-/Partybetrieb'>&nbsp;");
+  print("<img src=img/".($d["hk1 summermode"]=="on"?"sun_on.png":"sun_off.png")." alt=Sommerbetrieb>&nbsp;");
+  
+  if ($stoer){
+    print("<img src=img/maint_error.png alt=Störung>&nbsp;");
+  
+  } else {  
+    print("<img src=img/".($d["heater maintenancedue"]=="bydate"?"maint_cal.png":($d["heater maintenancedue"]=="byhours"?"maint_hour.png":"maint_off.png"))." alt='Wartung'>&nbsp;");
+  }
+  print("</td></tr></table>");
+print("</td></tr>");
+print("<tr><td valign=top>Betriebsart</b><br><font size=+1>".($d["hk1 daymode"]=="on"?"Tag":"Nacht")."</font><br> ".($d["hk1 automode"]=="on"?"Automatik":"manuell"));
+
+
+     
+print("</td>");
+print("<td valign=top bgcolor=$col2>Kessel</b><br><font size=+1><center>".$d["heater currenttemperature"].$dg."</font><br>soll: ".$d["heater targettemperature"].$dg."</td>");
+print("<td valign=top bgcolor=$col1>Kesselpumpe<br><font size=+1><center>".$d["heaterpump currentmodulation"].$pc."</font></td></tr>");
+
+print("<tr><td>");
+print("</td>");
+
+$fs = $d["flamecurrent"];
+$colfs="#dddddd";
+if ($fs > 1) $colfs="#eeeedd";
+if ($fs > 10) $colfs="#ffffdd";
+if ($fs > 15) $colfs="#ffffcc";
+if ($fs > 20) $colfs="#ffffaa";
+if ($fs > 35) $colfs="#ffff00";
+ 
+
+print("<td valign=top bgcolor=$col1>Leistung<br><font size=+1><center>".$d["burner currentmodulation"].$pc."</font></td>");
+print("<td valign=top bgcolor=$colfs>Flammenstrom<br><font size=+1><center>".$fs.$ua."</font></td></tr>");
+
+print("<tr><td valign=top >");
+print("</td>");
+print("<td valign=top bgcolor=$col2>Kesselausgang<br><font size=+1><center>".$d["heatexchanger currenttemperature"].$dg."</font></td>");
+print("<td valign=top bgcolor=$col3>R&uuml;cklauf<br><font size=+1><center>".$d["returnflow currenttemperature"].$dg."</font></td></tr>");
+
+print("<tr><td valign=top >");
+print("</td>");
+print("<td valign=top bgcolor=$col1>Warmwasser<br><font size=+1><center>".$d["ww currenttemperature"].$dg."</font><br>soll: ".$d["ww targettemperature"].$dg."</td>");
+print("<td  valign=top bgcolor=$col1>Zirkulation<br><font size=+1><center>".($d["zirkpumpactive"]=="on"?"AN":"AUS")."</font></td><tr>");
+
+print("<tr><td valign=top>Au&szlig;entemperatur<br><font size=+1>".$d["outdoor currenttemperature"].$dg."</font></td>");
+print("<td valign=top bgcolor=$col1>Statuscode<br><font size=+1><center>".$d["servicecode"]." ".$d["errorcode"]."</font></td>");
+print("<td></td></tr>");
+
+print("</table></center>");
+
+} else {
+
+$sccol = "#cccccc";
+if ($stoer) $sccol = "#ff0000";
+$desc=htmlentities($desc);
+print("<h3>Beschreibung</h3><div style='padding: 1em 1em 1em 1em;background-color: $sccol;' >".$desc."</div>");
+}
+close_ems();
+?>

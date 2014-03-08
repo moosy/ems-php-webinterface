@@ -1,0 +1,21 @@
+<?php
+require("/emsincludes/emsgetinfo.inc");
+$sourcestr = trim($_GET["source"]);
+$sources = explode("-",$sourcestr);
+foreach ($sources as $source){
+  switch($source){
+    case "holiday":
+    case "vacation":
+      $res = getHolVacInfo($source);
+      $inf = $res["von"]."-".$res["bis"];
+      break;
+    case "contact1":
+    case "contact2":
+      $inf=getContactInfo(substr($source,-1));
+      break;
+    default:
+      $inf = getInfo($source,"");
+  }
+  print($source."=".$inf."\n");
+}
+close_ems();

@@ -1,0 +1,39 @@
+<?php
+require ("/emsincludes/emsqry.inc");
+require ("/emsincludes/emsunits.inc");
+$data = getEmsLiveData(true);
+$d = array();
+foreach ($data as $k => $v){
+  $d[$k]=htmlentities($v);
+}
+print("<table bgcolor=#bbbbbb cellspacing=9><tr><td valign=top>");
+print("<table bgcolor=#eeeeee>");
+$i = 0;
+$lines = round(count($d)/3)+1;
+foreach ($d as $k => $v){
+  $va = explode("|",$v);
+  $v = $va[0];
+  $age = mktime() - $va[1];
+  $col = diff2col($age,2*60,array(255,255,0),array(255,255,150),array(222,222,222));
+  $tcol = diff2col($age,3*60,array(0,0,0),array(0,0,0),array(150,150,150));
+  $bold = "";
+  if ($age < 2) $bold = "<u>";
+  if ($i >= $lines ){
+    print("</table></td><td valign=top><table bgcolor=#eeeeee>");
+    $i=0;
+  }
+  $ka = explode(" ",$k." ");
+  if (trim($v) != "unavailable"){
+    if (isset($m_units[$ka[0]])) $v .= " ".$m_units[$ka[0]];
+    if (isset($m_units[$ka[1]])) $v .= " ".$m_units[$ka[1]];
+  }
+  $v = htmlentities($v);
+  print("<tr><td><font size=-4 color=$tcol>$bold$k</u></font></td><td bgcolor=$col align=center><font size=-4 color=$tcol>$v</font></td></tr>");
+  $i++;
+}
+?>
+</table>
+</td></tr></table>
+<?php
+close_ems();
+?>
