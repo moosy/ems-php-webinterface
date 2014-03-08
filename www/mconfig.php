@@ -14,6 +14,7 @@ $menus=array(
              "Fehlerspeicher" => "a_emserr.php",
              "Protokoll" => "a_emslog.php",
              "Statistik" => "a_emstime.php",
+             "HIDDEN7" => "a_emshour.php",
              "HIDDEN6" => "a_emstest.php",
              "HIDDEN4" => "a_emsday.php",
              "HIDDEN5" => "a_emsdet.php",
