@@ -21,14 +21,12 @@ function beginTable(){
 <?php
 }
 
+require("/emsincludes/emsqry.inc");
 
-require("emsqry.inc");
-if (!open_ems()) die ("<h3>Keine Verbindung zum EMS-Bus möglich</h3>");
-$in = array("Anlagenfehler" => doEmsCommand("geterrors"),
-            "Blockierende Fehler" => doEmsCommand("geterrors3"),
-            "Verriegelnde Fehler" => doEmsCommand("geterrors2"));
+$in = array("Anlagenfehler" => doEmsCommand("rc geterrors"),
+            "Kesselfehler" => doEmsCommand("uba geterrors"));
             
-require("emsscdesc.inc");
+require("/emsincludes/emsscdesc.inc");
 
 foreach ($in as $edesc => $data){
   print("<h2>$edesc</h2>");
@@ -41,6 +39,10 @@ foreach ($in as $edesc => $data){
   $cfld  = explode(" ",$l);
   if (count($cfld) != 7) continue;
   $haderrors = true;
+  $kind = substr($cfld[0],0,1);
+  $block = ($kind == "B");
+  $lock = ($kind == "L");
+  
   $cdate = str_replace("-",".",$cfld[1]);
   $ctime = $cfld[2];
   $sc= $cfld[4];
@@ -50,33 +52,20 @@ foreach ($in as $edesc => $data){
   $desc= $scdesc[$cfld[4].$cfld[5]];
   
   $col="#bbbbbb";
-  $stoer = false;
-  $heiz = false;
-  $sleep = false;
-  $tty="";
-
 
   print("<tr bgcolor=".$col.">");
-  if($stoer){
-    print('<td bgcolor=#d3d0c9><img src="/img/erroricon.png"></td>');
+  if($lock){
+    print('<td bgcolor=#d3d0c9><img src="img/error_lock.png"></td>');
+  } else if ($block){
+    $ls='<td bgcolor=#d3d0c9><img src="img/error_block.png"></td>';
+    print($ls);
   } else {
-
-    if ($heiz){
-      $ls='<td bgcolor=#d3d0c9><img src="/img/flameicon.png"></td>';
-      print($ls);
-    } else if ($sleep){
-    
-      $ls='<td bgcolor=#d3d0c9><img src="/img/sleep.png"></td>';
-      print($ls);
-    
-    } else {
-      $ls='<td bgcolor=#d3d0c9><img src="/img/info.png"></td>';
-      print($ls);
-    
-    }
-    
+    $ls='<td bgcolor=#d3d0c9><img src="img/info.png"></td>';
+    print($ls);
     
   }
+    
+    
   print("<td> ".$cdate.
         " </td><td> ".$ctime.
         " </td><td> ".$dur.
@@ -92,6 +81,7 @@ if (!$haderrors)print("<tr><td></td><td colspan=6>keine Einträge</td></tr>");
 <p>
 <?php
 }
+close_ems();
 ?>
 <input type=submit value="Aktualisieren">
 </form>

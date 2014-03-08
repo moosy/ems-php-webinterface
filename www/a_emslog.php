@@ -12,9 +12,9 @@ Protokoll Servicecodes
 <td><b>Beschreibung</b></td>
 </tr>
 <?php
-require("emsqry.inc");
+require("/emsincludes/emsqry.inc");
 $in = getEmsStatusCodes();
-require("emsscdesc.inc");
+require("/emsincludes/emsscdesc.inc");
 foreach ($in as $l){
 
   $cfld  = explode("|",$l);
@@ -66,19 +66,19 @@ foreach ($in as $l){
   }   
   print("<tr bgcolor=".$col.">");
   if($stoer){
-    print('<td bgcolor=#d3d0c9><img src="/img/erroricon.png"></td>');
+    print('<td bgcolor=#d3d0c9><img src="img/erroricon.png"></td>');
   } else {
 
     if ($heiz){
-      $ls='<td bgcolor=#d3d0c9><img src="/img/flameicon.png"></td>';
+      $ls='<td bgcolor=#d3d0c9><img src="img/flameicon.png"></td>';
       print($ls);
     } else if ($sleep){
     
-      $ls='<td bgcolor=#d3d0c9><img src="/img/sleep.png"></td>';
+      $ls='<td bgcolor=#d3d0c9><img src="img/sleep.png"></td>';
       print($ls);
     
     } else {
-      $ls='<td bgcolor=#d3d0c9><img src="/img/info.png"></td>';
+      $ls='<td bgcolor=#d3d0c9><img src="img/info.png"></td>';
       print($ls);
     
     }

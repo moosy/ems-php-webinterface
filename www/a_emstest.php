@@ -15,9 +15,8 @@ Test automatisch abgebrochen!
 </td></tr><tr bgcolor=#cccccc>
 <?php
 
-require("emsqry.inc");
-require("emschoosers.inc");
-if (!open_ems()) die("<h3>FATAL: Keine Verbindung zum EMS-Bus möglich.</h3>");
+require("/emsincludes/emsqry.inc");
+require("/emsincludes/emschoosers.inc");
 
 $kessel = $pumpe = 0;
 $dwv = $zirk = $active = "off";

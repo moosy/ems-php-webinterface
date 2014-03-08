@@ -6,6 +6,9 @@ ems-collector daemon accessible through HTTP.
 
 For installation, see INSTALL.
 For screenshots, look into the screenshots directory.
+NOTE: The screenshots are not quite up-to-date, they are
+from an older version without AJAX. In this version 
+most of the "Setzen"-Buttons are away ;).
 
 This work relies heavily of the ems-collector written by
 Danny Baumann. Thanks to him for his excellent work.

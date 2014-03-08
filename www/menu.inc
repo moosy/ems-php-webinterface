@@ -1,5 +1,5 @@
 <?php
-require("config.php");
+require("mconfig.php");
 # Menüs anzeigen
      
 function menu($mtitle,$murl,$mdesc,$mpages,$acclevel){

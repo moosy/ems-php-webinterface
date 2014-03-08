@@ -23,54 +23,26 @@ highly recommended.
 
 You need:
 
-1. A working ems-collector daemon that logs its data to 
-   /var/log/ems/data.log. For this version you need the extended edition
-   by Michael Moosbauer in the version 0.9 beta2 or above.
-   You have to add the following OPTIONS to your /etc/default/ems-collector:
+1. Working EMS-Tools. If your INSTALL-procedure succeeded there,
+   the installation of the web-frontend should be quite easy.
 
-    -i -d data=/var/log/ems/data.log 
-
-   You can cat the latest source of the modified ems-collector at
-   https://github.com/moosy/ems-collector.
-   NOTE: You need the develop branch, as the master branch is work
-   in progress for merging with Dannys original!
-   Get the right one with:
-
-   git clone -b develop  https://github.com/moosy/ems-collector
-
-
-2. A working PHP environment with access to your EMS-mysql-database.
-
-3. You have to ensure that the webserver can write to /tmp and to
+2. You have to ensure that the webserver can write to /tmp and to
    the subdirectory "graph" below your webspace in order to generate
-   the graphics.
+   the graphics. If you changed these dirs, these apply, of course.
 
-4. The webserver must be allowed to execute the scripts in the
-   included bin/ dir.
+3. The webserver must be allowed to execute the scripts in the
+   scripts dir of the ems-tools distribution. Either allow the
+   server sudo-ing them, or adjust the permissions respectively 
+   (remove the sudo in the a_emshk.php then).
 
-5. If you think you are ready, copy the content of the www/ folder in your
+4. If you think you are ready, copy the content of the www/ folder in your
    webspace.
 
-6. Adjust the $graphpath variable in emsqry.inc to fit your needs.
+5. Adjust the database credentials in sensor_utils.php and in config.php,
+   if not yet done.
 
-7. Adjust the database credentials in sensor_utils.php and in emsqry.inc
-
-8. Look through the scripts in bin/ and adjust all paths to fit your needs.
-
-9. Ensure again the ems-collectord is configured as above and its logfiles
-   are readable by the webserver.
-
-10. Add a cronjob that periodically calls the bin/calcemsgraphs.sh script 
-   in order to generate the statistic graphs.
-
-11. If you want to get an e-mail in case of a problem, adjust the
-    bin/emsperiodiccheck.php script and add a cronjob to call it 
-    periodically.
-
-12. Navigate with your webbrowser to the webspace and open the
+6. Navigate with your webbrowser to the webspace and open the
     index.php file (if that does not happen automatically).
 
-13. If something does not work, check the webserver log
-    for details.
- 
-  
+7. If something does not work, check the webserver log
+   for details.
