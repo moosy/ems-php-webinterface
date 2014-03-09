@@ -3,7 +3,8 @@
 include 'constants.php.inc';
 
 function open_db() {
-  return new PDO('mysql:dbname=ems_data;host=localhost', 'ems', 'buderusems');
+  require("/emsincludes/config.php");
+  return new PDO('mysql:dbname=ems_data;host='.$mysql_host, $mysql_user, $mysql_pass);
 }
 
 function format_value($row) {
