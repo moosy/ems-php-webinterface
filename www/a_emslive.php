@@ -263,10 +263,11 @@ progress(30);
 </script>
 <?php flush_buffers();?>
 <form method=post> 
-<table border=0 cellspacing=0 cellpadding=10>
-<tr><td bgcolor=#bbbbbb colspan=2><h3>Betriebsart</h3></td></tr>
+<table border=0 cellspacing=1 cellpadding=7>
+<tr><td bgcolor=#bbbbbb colspan=3><h3>Betriebsart</h3></td></tr>
 
 <tr>
+<td rowspan=1 ></td>
 <td align=center colspan=2 bgcolor=#cccccc>
 <table cellpadding=2><tr>
 <td id=daym><input name=hkmode type=button value=Tag onclick=setCommand("hkmode","day");></td>
@@ -275,9 +276,10 @@ progress(30);
 </table>
 </td>   
 </tr>
-<tr><td bgcolor=#bbbbbb colspan=2><h3>Heizkreis</h3></td></tr>
+<tr><td bgcolor=#bbbbbb colspan=3><h3>Heizkreis</h3></td></tr>
 
 <tr>
+<td rowspan=3></td>
 <td id=ttempchooser colspan=2 bgcolor=#cccccc align=center>
 <table bgcolor=#eeeeee border=0>
 <tr>
@@ -287,7 +289,7 @@ progress(30);
 <?php 
 printf("%1.1f",$temptemp);
 ?>
-</span></font><font size=-1.5><sup>&nbsp;°C</sup></td>
+</span></font><font size=-1.5><sup>°C</sup></td>
 <td bgcolor=#eeeeee><a href="javascript:void(); " onclick=addv();><img src=img/plus.png border=0></a></td>
 <td><input name=settemptemp type=button value='Set' onclick=setTempTemp(); ><br><input name=settemptempoff type=button value='Reset' onclick=setTempTempOff();></td>
 </tr>
@@ -329,8 +331,9 @@ Pausemodus<br><center>
 </td>   
 </tr>
 
-<tr><td  bgcolor=#bbbbbb colspan=2><h3>Warmwasser</h3></td></tr>
+<tr><td  bgcolor=#bbbbbb colspan=3><h3>Warmwasser</h3></td></tr>
 <tr>
+<td rowspan=2></td>
 <td id=wwtemp align=left bgcolor=#cccccc>
 Temperatur<br><center>
 <?php tempchooser("wwtag",30,80,1,"°C","wählen",getWWinfo("wwtag"));?>
@@ -357,7 +360,7 @@ Zirkulation<br><center>
 </td>   
 </tr>
 <tr>
-<td bgcolor=#bbbbbb colspan=2>
+<td bgcolor=#bbbbbb colspan=3>
 <div id=statusbar  style="font-size: 6pt;">
 Bereit.</div>
 </td></tr>
@@ -402,7 +405,6 @@ function showLiveInfo()
         document.getElementById("desctable").innerHTML=xmlhttpI.responseText;
         document.getElementById("main").style.display="block";
         document.getElementById("sub").style.display="block";
-        document.getElementById("subline").style.display="block";
         document.getElementById("prog").style.display="none";
         progress(100);
         
@@ -425,8 +427,12 @@ setInterval(function(){showInfos();},2000);
 close_ems();
 ?>
 
-<table border=0 cellpadding=10 cellspacing=0>
-<tr><td bgcolor=#cccccc>
+<table border=0 cellpadding=7 cellspacing=1>
+<tr><td bgcolor=#cccccc colspan=2>
+<h3>Status</h3>
+</td></tr>
+<tr><td></td>
+<td bgcolor=#cccccc>
 <div id=infotable>
 </div>
 </td></tr>
@@ -435,10 +441,13 @@ close_ems();
 </td></tr>
 </table>
 <p>
-<hr id=subline style="display: none;">
-<p>
-<table id=sub border=0 cellpadding=10 cellspacing=0 width=700px style="display: none;">
-<tr><td bgcolor=#cccccc>
+<table id=sub border=0 cellpadding=7 cellspacing=1 width=100% style="display: none;">
+<tr><td bgcolor=#bbbbbb colspan=2>
+<h3>Beschreibung</h3>
+</td></tr>
+<tr>
+<td></td>
+<td bgcolor=#cccccc>
 <div id=desctable >
 </div>
 </td></tr>

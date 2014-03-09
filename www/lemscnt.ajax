@@ -16,7 +16,6 @@ Preload Pics:
 <img src="img/off.jpg">
 <img src="img/valve.jpg">
 <img src="img/heater.jpg">
-
 </div>
 <?php
 $dg = " &deg;C";
@@ -39,9 +38,6 @@ $col3="#ddddff";
 
 if ($_GET["id"]==1){
 ?>
-<h3>Status</h3>
-</td></tr>
-<tr><td colspan=2 bgcolor=#cccccc>
 <table bgcolor=#FFFFFF cellspacing=5 cellpadding=5 width=100%>
 <?php
 print("<tr><td colspan=3>");
@@ -106,7 +102,7 @@ print("</table></center>");
 $sccol = "#cccccc";
 if ($stoer) $sccol = "#ff0000";
 $desc=htmlentities($desc);
-print("<h3>Beschreibung</h3><div style='padding: 1em 1em 1em 1em;background-color: $sccol;' >".$desc."</div>");
+print("<div style='padding: 1em 1em 1em 1em;background-color: $sccol;' >".$desc."</div>");
 }
 close_ems();
 ?>
