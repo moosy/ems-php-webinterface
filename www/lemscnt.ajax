@@ -1,6 +1,10 @@
 <div style="display: none;">
 Preload Pics:
-<img src="img/pp_on.png">
+<img src="img/hv_holiday.png">
+<img src="img/hv_vacation.png">
+<img src="img/hv_off.png">
+<img src="img/pp_party.png">
+<img src="img/pp_pause.png">
 <img src="img/pp_off.png">
 <img src="img/ww_on.png">
 <img src="img/ww_off.png">
@@ -44,12 +48,14 @@ print("<tr><td colspan=3>");
   print("<table><tr><td>");
   print("<img src=img/".($d["flameactive"]=="on"?"flame.jpg":"off.jpg")." alt=Flamme>");
   print("<img src=img/".($d["3wayonww"]=="on"?"valve.jpg":"heater.jpg")." alt='Heiz- oder Warmwasserbetrieb'>");
-  print("</td><td valign=top>");
+  print("</td><td valign=top align=right>");
   print("<img src=img/".($d["ww daymode"]=="on"?"ww_on.png":"ww_off.png")." alt=Warmwasserbereitung>&nbsp;");
   print("<img src=img/".($d["zirkpump daymode"]=="on"?"zirk_on.png":"zirk_off.png")." alt=Zirkulation>&nbsp;");
-  print("<img src=img/".($d["hk1 partymode"]=="on"?"pp_on.png":"pp_off.png")." alt='Pause-/Partybetrieb'>&nbsp;");
+  print("<img src=img/".($d["hk1 partymode"]=="on"?"pp_party.png":($d["hk1 pausemode"]=="on"?"pp_pause.png":"pp_off.png"))." alt='Pause-/Partybetrieb'>&nbsp;");
+
+  print("<img src=img/".($d["hk1 holidaymode"]=="on"?"hv_holiday.png":($d["hk1 vacationmode"]=="on"?"hv_vacation.png":"hv_off.png"))." alt='Urlaub-/Ferienbetrieb'>&nbsp;");
+  print("<br>");  
   print("<img src=img/".($d["hk1 summermode"]=="on"?"sun_on.png":"sun_off.png")." alt=Sommerbetrieb>&nbsp;");
-  
   if ($stoer){
     print("<img src=img/maint_error.png alt=Störung>&nbsp;");
   

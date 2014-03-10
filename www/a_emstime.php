@@ -64,7 +64,15 @@ $in = array("Betriebsstunden total" => parseTimeStr(getlivedata(),"operatingminu
             
 
 
-print("<table cellspacing=14><tr><td colspan=2>");
+print("<table cellspacing=14>");
+if ($in["Version EMS-Collector"] < $min_collector_version){
+  print("<tr><td colspan=2 bgcolor=#ff0000 style='padding: 2em 2em 2em 2em; font-size: 14pt;'><b>ACHTUNG:</b> ".
+    "Der verwendete ems-collector ist zu alt! Erforderlich ist Version $min_collector_version oder neuer! ".
+    "Es können womöglich nicht alle Funktionen ".
+    "benutzt werden. Verwenden Sie ggf. die Version von <a href='https://github.com/moosy/ems-collector'>https://github.com/moosy/ems-collector</a>!</td></tr>");
+}
+print("<tr><td colspan=2>");
+
 # print("<img src=img/mc10bild.jpg align=left width=90%>");
 print("</td></tr><tr><td>");
 
