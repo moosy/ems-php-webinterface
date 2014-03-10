@@ -18,7 +18,7 @@ function showinfo()
         document.getElementById("inhalt").innerHTML=xmlhttpI.responseText;
      }
    }
- xmlhttpI.open("GET","ajax.php?seite=emsdetail.ajax",true);
+ xmlhttpI.open("GET","ajax.php?seite=emsdetail.ajax&id="+Math.random(),true);
  xmlhttpI.send();
  }
 setInterval(function(){showinfo()},500);

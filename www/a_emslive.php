@@ -414,7 +414,7 @@ function showLiveInfo()
      }
    }
  windownr=1-windownr;
- xmlhttpI.open("GET","ajax.php?seite=lemscnt.ajax&id="+windownr+"&<?php echo htmlspecialchars(SID); ?>",true);
+ xmlhttpI.open("GET","ajax.php?seite=lemscnt.ajax&id="+windownr+"&rand="+Math.random(),true);
  xmlhttpI.send();
  }
 progress(70);

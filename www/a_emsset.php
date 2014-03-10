@@ -67,6 +67,9 @@ function setValue(src)
   } else if ((src == "kpmin")||(src == "kpmax")){
     var newval = document.getElementById("kpmin").value+"-"+document.getElementById("kpmax").value;
     sndsrc = "kpmod";
+  } else if ((src == "burnmin")||(src == "burnmax")){
+    var newval = document.getElementById("burnmin").value+"-"+document.getElementById("burnmax").value;
+    sndsrc = "burnmod";
   } else { 
     var sel = document.getElementById(src);
     var newval = sel.options[sel.selectedIndex].value;
@@ -206,7 +209,7 @@ var selsources = new Array('nachtred','frost','absquit','summertime','maxroomeff
                         'refinputvac','urlaubt','urlaubnachtred','refinput','redmode','frostmode','schedoptimizer',
                         'daempfung','gebaeude','minaussentemp','spzir','limittemp','loadled',
                         'tdstat','tdtemp','tdday','tdhour','antipen','hystein','hystaus',
-                        'kpnachl','kpmin','kpmax','mtmode','mthours');
+                        'kpnachl','kpmin','kpmax','burnmin','burnmax','mtmode','mthours');
 var sources = selsources.concat(new Array("holiday","vacation","mtdate","contact1","contact2"));
 
 var qenabled = new Array();
@@ -479,10 +482,10 @@ progress(20);
 <td>&nbsp;</td>
 
 <td align=left  valign=top bgcolor=#cccccc>
-<h3>Taktsperre</h3>
+<h3>Brenner</h3>
 <table width=100%>
 <tr>
-  <td>Antipendelzeit</td>
+  <td>Antipendelzeit (Taktsperre)</td>
   <td align=right ><?php tempchooser("antipen",5,30,1,"min","wählen",getUBAinfo("antipen"));?></td>
 </tr>   
 <script type="text/javascript">progress(60);</script>
@@ -494,6 +497,14 @@ progress(20);
 <tr>
   <td>Ausschalthysterese</td>
   <td align=right ><?php tempchooser("hystaus",1,10,1,"°C","wählen",getUBAinfo("hystaus"));?></td>
+</tr>   
+<tr>
+  <td>min. Leistung </td>
+  <td align=right ><?php tempchooser("burnmin",0,100,5,"%","wählen",getUBAinfo("burnmin"));?></td>
+</tr> 
+<tr>  
+  <td>max. Leistung </td>
+  <td align=right ><?php tempchooser("burnmax",0,100,5,"%","wählen",getUBAinfo("burnmax"));?></td>
 </tr>   
 </table>
 
