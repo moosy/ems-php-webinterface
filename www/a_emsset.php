@@ -255,6 +255,7 @@ xmlhttp.onreadystatechange=function()
         var sel = document.getElementById(src);
         for (n=0; n < sel.length; n++){
           if (sel.options[n].value==val) sel.selectedIndex=n;
+          w_act();
         }
       }
     }
