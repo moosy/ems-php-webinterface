@@ -42,6 +42,7 @@ foreach ($in as $edesc => $data){
   $kind = substr($cfld[0],0,1);
   $block = ($kind == "B");
   $lock = ($kind == "L");
+  $del = ($kind == "D");
   
   $cdate = str_replace("-",".",$cfld[1]);
   $ctime = $cfld[2];
@@ -51,13 +52,16 @@ foreach ($in as $edesc => $data){
   $dur = $cfld[6];
   $desc= $scdesc[$cfld[4].$cfld[5]];
   
-  $col="#bbbbbb";
-
-  print("<tr bgcolor=".$col.">");
+  $col="#000000";
+  if ($del) $col = "#666666"; 
+  print("<tr bgcolor=#bbbbbb style='color: ".$col.";'>");
   if($lock){
     print('<td bgcolor=#d3d0c9><img src="img/error_lock.png"></td>');
   } else if ($block){
     $ls='<td bgcolor=#d3d0c9><img src="img/error_block.png"></td>';
+    print($ls);
+  } else if ($del){
+    $ls='<td bgcolor=#d3d0c9><img src="img/info_del.png"></td>';
     print($ls);
   } else {
     $ls='<td bgcolor=#d3d0c9><img src="img/info.png"></td>';
