@@ -99,6 +99,8 @@ print("<td  valign=top bgcolor=$col1>Zirkulation<br><font size=+1><center>".($d[
 
 print("<tr><td valign=top>Au&szlig;entemperatur<br><font size=+1>".$d["outdoor currenttemperature"].$dg."</font></td>");
 print("<td valign=top bgcolor=$col1>Statuscode<br><font size=+1><center>".$d["servicecode"]." ".$d["errorcode"]."</font></td>");
+print("<td valign=top bgcolor=$col1>Systemdruck<br><font size=+1><center>".$d["pressure"]." bar</font></td></tr>");
+
 print("<td></td></tr>");
 
 print("</table></center>");
