@@ -1,4 +1,5 @@
 <?php
+ob_start();
 header('Content-Type: text/html; charset=iso-8859-1');
 $seite=$_GET["seite"];
 $seite = str_replace("/","",$seite);

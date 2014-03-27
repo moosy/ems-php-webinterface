@@ -1,6 +1,7 @@
 <?php
+ob_start();
 header('Content-Type: text/html; charset=iso-8859-1');
-$seite=$_GET["seite"];
+$seite=@$_GET["seite"];
 $seite = str_replace("/","",$seite);
 $seite = substr($seite,0,-4);
 $seite = str_replace(".","",$seite);
@@ -18,7 +19,7 @@ $seite .= ".php";
 </head>
 <body>
 <?php
-$menu = ($_GET["menu"]!="no");
+$menu = (@$_GET["menu"]!="no");
 if ($menu) {
   require("top.php");
   print('<div id="content"><p>&nbsp;<p>');
