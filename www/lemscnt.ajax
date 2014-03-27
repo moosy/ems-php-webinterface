@@ -95,7 +95,7 @@ print("<td valign=top bgcolor=$col3>R&uuml;cklauf<br><font size=+1><center>".$d[
 print("<tr><td valign=top >");
 print("</td>");
 print("<td valign=top bgcolor=$col1>Warmwasser<br><font size=+1><center>".$d["ww currenttemperature"].$dg."</font><br>soll: ".$d["ww targettemperature"].$dg."</td>");
-print("<td  valign=top bgcolor=$col1>Zirkulation<br><font size=+1><center>".($d["zirkpumpactive"]=="on"?"AN":"AUS")."</font></td><tr>");
+print("<td  valign=top bgcolor=$col1>Zirkulation<br><font size=+1><center>".($d["zirkpumpactive"]=="on"?"AN":"AUS")."</font></td></tr>");
 
 print("<tr><td valign=top>Au&szlig;entemperatur<br><font size=+1>".$d["outdoor currenttemperature"].$dg."</font></td>");
 print("<td valign=top bgcolor=$col1>Statuscode<br><font size=+1><center>".$d["servicecode"]." ".$d["errorcode"]."</font></td>");
